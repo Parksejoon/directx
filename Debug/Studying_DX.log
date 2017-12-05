@@ -1,0 +1,33 @@
+﻿  systemclass.cpp
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  main.cpp
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  graphicsclass.cpp
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.h(40): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(13): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(32): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(32): error C2061: 구문 오류: 식별자 'D3Dclass'
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(33): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(39): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(39): error C2227: '->Initialize' 왼쪽은 클래스/구조체/공용 구조체/제네릭 형식을 가리켜야 합니다.
+  c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(39): note: 'unknown-type' 형식입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(53): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(55): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(55): error C2227: '->Shutdown' 왼쪽은 클래스/구조체/공용 구조체/제네릭 형식을 가리켜야 합니다.
+  c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(55): note: 'unknown-type' 형식입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(56): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(56): error C2541: 'delete': 포인터가 아닌 개체를 삭제할 수 없습니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(57): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(82): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(82): error C2227: '->BeginScene' 왼쪽은 클래스/구조체/공용 구조체/제네릭 형식을 가리켜야 합니다.
+  c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(82): note: 'unknown-type' 형식입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(85): error C2065: 'm_D3D': 선언되지 않은 식별자입니다.
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(85): error C2227: '->EndScene' 왼쪽은 클래스/구조체/공용 구조체/제네릭 형식을 가리켜야 합니다.
+  c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(85): note: 'unknown-type' 형식입니다.
+  코드를 생성하고 있습니다...
