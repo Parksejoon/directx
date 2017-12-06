@@ -8,6 +8,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	SystemClass* System;
 	bool result;
 
+
 	// system °´Ã¼ »ý¼º
 	System = new SystemClass;
 	if (!System)

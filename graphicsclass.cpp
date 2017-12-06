@@ -28,8 +28,9 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
 
+
 	// Direct3D 객체를 생성
-	m_D3D = new D3Dclass;
+	m_D3D = new D3DClass;
 	if (!m_D3D)
 	{
 		return false;
@@ -64,6 +65,7 @@ void GraphicsClass::Shutdown()
 bool GraphicsClass::Frame()
 {
 	bool result;
+
 
 	// 그래픽 렌더링을 수행
 	result = Render();

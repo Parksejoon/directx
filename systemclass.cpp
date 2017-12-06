@@ -30,6 +30,7 @@ bool SystemClass::Initialize()
 	int  screenWidth, screenHeight;
 	bool result;
 
+
 	// 함수에 높이와 너비를 전달하기 전에 변수를 0으로 초기화
 	screenWidth = 0;
 	screenHeight = 0;
@@ -87,6 +88,7 @@ void SystemClass::Run()
 	MSG msg;
 	bool done, result;
 
+
 	// 메세지 구조체를 초기화
 	ZeroMemory(&msg, sizeof(MSG));
 
@@ -123,6 +125,7 @@ void SystemClass::Run()
 bool SystemClass::Frame()
 {
 	bool result;
+
 
 	// 유저가 Esc키를눌러 어플리케이션을 종료하기를 원하는지 확인
 	if (m_Input->IsKeyDown(VK_ESCAPE))
@@ -175,6 +178,7 @@ void SystemClass::InitiallzeWindows(int& screenWidth, int& screenHeight)
 	WNDCLASSEX wc;
 	DEVMODE dmScreenSettings;
 	int posX, posY;
+
 
 	// 외부 포인터를 이 객체로 설정
 	ApplicationHandle = this;
