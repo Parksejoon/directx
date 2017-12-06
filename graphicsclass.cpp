@@ -10,7 +10,7 @@
 // 持失切
 GraphicsClass::GraphicsClass()
 {
-	m_D3D = 0;
+	m_D3D = NULL;
 }
 
 // 差紫 持失切

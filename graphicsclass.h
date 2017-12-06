@@ -4,7 +4,7 @@
 #pragma once
 
 //
-// INCLUDES
+// MY CLASS INCLUDES
 //
 #include "d3dclass.h"
 
