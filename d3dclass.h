@@ -26,12 +26,10 @@ using namespace DirectX;
 class D3DClass
 {
 public:
-	// 생성자 & 소멸자
 	D3DClass();
 	D3DClass(const D3DClass&);
 	~D3DClass();
 
-	// 멤버 함수
 	bool Initialize(int, int, bool, HWND, bool, float, float);
 	void Shutdown();
 
@@ -48,20 +46,19 @@ public:
 	void GetVideoCardInfo(char*, int&);
 
 private:
-	// 멤버 변수
 	bool	m_vsync_enabled;		
 	int		m_videoCardMemory; 
 	char	m_videoCardDescription[128];
 	
-	IDXGISwapChain*				m_swapChain;
-	ID3D11Device*				m_device; 
-	ID3D11DeviceContext*		m_deviceContext; 
-	ID3D11RenderTargetView*		m_renderTargetView; 
-	ID3D11Texture2D*			m_depthStencilBuffer; 
-	ID3D11DepthStencilState*	m_depthStencilState; 
-	ID3D11DepthStencilView*		m_depthStencilView;
-	ID3D11RasterizerState*		m_rasterState; 
-	XMMATRIX					m_projectionMatrix;
-	XMMATRIX					m_worldMatrix; 
-	XMMATRIX					m_orthoMatrix;
+	IDXGISwapChain*				m_swapChain;					// 스왑 체인
+	ID3D11Device*				m_device;						// 디바이스
+	ID3D11DeviceContext*		m_deviceContext;				// 디바이스 콘텍스트
+	ID3D11RenderTargetView*		m_renderTargetView;				// 랜더 타겟 뷰
+	ID3D11Texture2D*			m_depthStencilBuffer;			// 스텐실 버퍼
+	ID3D11DepthStencilState*	m_depthStencilState;			// 스텐실 상대
+	ID3D11DepthStencilView*		m_depthStencilView;				// 스텐실 뷰
+	ID3D11RasterizerState*		m_rasterState;					// 레스터 상태
+	XMMATRIX					m_projectionMatrix;				// 투영행렬
+	XMMATRIX					m_worldMatrix;					// 월드행렬
+	XMMATRIX					m_orthoMatrix;					// 정투영행렬
 };

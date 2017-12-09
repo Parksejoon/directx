@@ -7,36 +7,32 @@
 // CLASS FUNCTION
 //
 
-// 생성자
 GraphicsClass::GraphicsClass()
 {
 	m_D3D = NULL;
 }
 
-// 복사 생성자
 GraphicsClass::GraphicsClass(const GraphicsClass& other)
 {
 }
 
-// 소멸자
 GraphicsClass::~GraphicsClass()
 {
 }
 
-// 생성
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
 
 
-	// Direct3D 객체를 생성
+	// Direct3D 객체를 생성합니다.
 	m_D3D = new D3DClass;
 	if (!m_D3D)
 	{
 		return false;
 	}
 
-	// Direct3D 객체를 초기화
+	// Direct3D 객체를 초기화합니다.
 	result = m_D3D->Initialize(screenWidth, screenHeight, VSYNC_ENABLED, hwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
 	if (!result)
 	{
@@ -50,7 +46,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 // 종료
 void GraphicsClass::Shutdown()
 {
-	// D3D 객체를 반환
+	// D3D 객체를 반환합니다.
 	if (m_D3D)
 	{
 		m_D3D->Shutdown();
@@ -67,7 +63,7 @@ bool GraphicsClass::Frame()
 	bool result;
 
 
-	// 그래픽 렌더링을 수행
+	// 그래픽 렌더링을 수행합니다.
 	result = Render();
 	if (!result)
 	{
@@ -80,10 +76,10 @@ bool GraphicsClass::Frame()
 // 랜더링
 bool GraphicsClass::Render()
 {
-	// 씬 그리기를 시작하기 위해 버퍼의 내용을 지움
+	// 씬 그리기를 시작하기 위해 버퍼의 내용을 지움니다.
 	m_D3D->BeginScene(0.5f, 0.5f, 0.5f, 1.0f);
 
-	// 버퍼에 그려진 씬을 화면에 표시
+	// 버퍼에 그려진 씬을 화면에 표시합니다.
 	m_D3D->EndScene();
 
 	return true;

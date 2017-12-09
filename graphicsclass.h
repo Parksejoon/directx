@@ -22,20 +22,17 @@ const float SCREEN_NEAR = 0.1f;
 class GraphicsClass
 {
 public:
-	// 생성자 & 소멸자
 	GraphicsClass();
 	GraphicsClass(const GraphicsClass&);
 	~GraphicsClass();
 
-	// 멤버 함수
-	bool Initialize(int, int, HWND);	// 생성
+	bool Initialize(int, int, HWND);	// 초기화
 	void Shutdown();					// 종료
 	bool Frame();						// 매 프래임마다 실행
 
 private:
-	bool Render();						//랜더링
+	bool Render();						// 랜더링
 
 private:
-	// 멤버 변수
-	D3DClass* m_D3D;
+	D3DClass* m_D3D;					// DirectX 3D를 관리하는 포인터
 };
