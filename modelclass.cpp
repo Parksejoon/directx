@@ -3,6 +3,10 @@
 //
 #include "modelclass.h"
 
+
+//
+// CLASS FUNCTION
+//
 ModelClass::ModelClass()
 {
 	m_vertexBuffer = 0;
@@ -136,5 +140,53 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 		return false;
 	}
 
-	// 생성되고 값이 할당된 
+	// 생성되고 값이 할당된 정점 버퍼와 인덱스 버퍼를 해제합니다.
+	delete[] vertices;
+	vertices = 0;
+
+	delete[] indices;
+	indices = 0;
+
+	return true;
+}
+
+void ModelClass::ShutdownBuffers()
+{
+	// 인덱스 버퍼를 해제합니다.
+	if (m_indexBuffer)
+	{
+		m_indexBuffer->Release();
+		m_indexBuffer = 0;
+	}
+
+	// 정점 버퍼를 해제합니다.
+	if (m_vertexBuffer)
+	{
+		m_vertexBuffer->Release();
+		m_vertexBuffer = 0;
+	}
+
+	return;
+}
+
+void ModelClass::RenderBuffers(ID3D11DeviceContext* deviceContext)
+{
+	unsigned int stride;
+	unsigned int offset;
+
+
+	// 정점 버퍼의 단위와 오프셋을 설정합니다.
+	stride = sizeof(VertexType);
+	offset = 0;
+
+	// input assembler에 정점 버퍼를 활성화하여 그려질 수 있게 합니다.
+	deviceContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
+
+	// input assembler에 인덱스 버퍼를 활성화하여 그려질 수 있게 합니다.
+	deviceContext->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+	
+	// 정점 버퍼로 그릴 기본형을 설정합니다. 이곳에선 삼각형으로 설정합니다.
+	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	return;
 }

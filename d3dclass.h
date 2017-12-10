@@ -10,6 +10,7 @@
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3d11.lib")
 
+
 //
 // INCLUDES
 //
@@ -19,6 +20,7 @@
 #include <DirectXMath.h>
 
 using namespace DirectX;
+
 
 //
 // Class Name : D3DClass
@@ -30,25 +32,25 @@ public:
 	D3DClass(const D3DClass&);
 	~D3DClass();
 
-	bool Initialize(int, int, bool, HWND, bool, float, float);
-	void Shutdown();
+	bool Initialize(int, int, bool, HWND, bool, float, float);	// 초기화
+	void Shutdown();											// 종료
 
-	void BeginScene(float, float, float, float);
-	void EndScene();
+	void BeginScene(float, float, float, float);				// 씬을 그리기 시작
+	void EndScene();											// 씬을 다 그림
 
-	ID3D11Device* GetDevice();
-	ID3D11DeviceContext* GetDeviceContext();
+	ID3D11Device* GetDevice();									// Device의 포인터를 받아옴
+	ID3D11DeviceContext* GetDeviceContext();					// DeviceContext의 포인터를 받아옴
 
-	void GetProjectionMatrix(XMMATRIX&);
-	void GetWorldMatrix(XMMATRIX&);
-	void GetOrthoMatrix(XMMATRIX&);
+	void GetProjectionMatrix(XMMATRIX&);						// 사영 행렬을 레퍼런스로 받아옴
+	void GetWorldMatrix(XMMATRIX&);								// 월드 행렬을 레퍼런스로 받아옴
+	void GetOrthoMatrix(XMMATRIX&);								// 정사영 행렬을 레퍼런스로 받아옴
 
-	void GetVideoCardInfo(char*, int&);
+	void GetVideoCardInfo(char*, int&);							// 그래픽카드의 정보를 받아옴
 
 private:
-	bool	m_vsync_enabled;		
-	int		m_videoCardMemory; 
-	char	m_videoCardDescription[128];
+	bool	m_vsync_enabled;									// 수직 동기화 여부
+	int		m_videoCardMemory;									// 그래픽카드의 메모리
+	char	m_videoCardDescription[128];						// 그래픽카드의 초기화 설정 
 	
 	IDXGISwapChain*				m_swapChain;					// 스왑 체인
 	ID3D11Device*				m_device;						// 디바이스
@@ -58,7 +60,7 @@ private:
 	ID3D11DepthStencilState*	m_depthStencilState;			// 스텐실 상대
 	ID3D11DepthStencilView*		m_depthStencilView;				// 스텐실 뷰
 	ID3D11RasterizerState*		m_rasterState;					// 레스터 상태
-	XMMATRIX					m_projectionMatrix;				// 투영행렬
+	XMMATRIX					m_projectionMatrix;				// 사영행렬
 	XMMATRIX					m_worldMatrix;					// 월드행렬
-	XMMATRIX					m_orthoMatrix;					// 정투영행렬
+	XMMATRIX					m_orthoMatrix;					// 정사영행렬
 };

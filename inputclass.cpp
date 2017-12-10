@@ -3,10 +3,10 @@
 //
 #include "inputclass.h"
 
+
 //
 // CLASS FUNCTION
 // 
-
 InputClass::InputClass()
 {
 }

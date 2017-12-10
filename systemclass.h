@@ -3,21 +3,25 @@
 //
 #pragma once
 
+
 //
 // PRE-PROCESSING DIRECTIVES
 //
 #define WIN32_LEAN_AND_MEAN
+
 
 //
 // INCLUDES
 //
 #include <windows.h>
 
+
 //
 // MY CLASS INCLUDES
 //
 #include "inputclass.h"
 #include "graphicsclass.h"
+
 
 //
 // Class Name : SystemClass
@@ -49,10 +53,12 @@ private:
 	GraphicsClass*  m_Graphics;				// 그래픽 출력 처리
 };
 
+
 //
 // FUNCTION PROTOTYPES
 //
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
 
 //
 // GLOBALS

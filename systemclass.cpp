@@ -3,10 +3,10 @@
 //
 #include "systemclass.h"
 
+
 //
 // CLASS FUNCTION
 //
-
 SystemClass::SystemClass()
 {
 	m_Input = 0;
@@ -271,10 +271,10 @@ void SystemClass::ShutdownWindows()
 	return;
 }
 
+
 // 
 // FUNCTION
 // 
-
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	switch (umessage)

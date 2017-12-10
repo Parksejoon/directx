@@ -3,10 +3,10 @@
 //
 #include "graphicsclass.h"
 
+
 //
 // CLASS FUNCTION
 //
-
 GraphicsClass::GraphicsClass()
 {
 	m_D3D = NULL;
@@ -43,7 +43,6 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	return true;
 }
 
-// 종료
 void GraphicsClass::Shutdown()
 {
 	// D3D 객체를 반환합니다.
@@ -57,7 +56,6 @@ void GraphicsClass::Shutdown()
 	return;
 }
 
-// 매 프래임
 bool GraphicsClass::Frame()
 {
 	bool result;
@@ -73,7 +71,6 @@ bool GraphicsClass::Frame()
 	return true;
 }
 
-// 랜더링
 bool GraphicsClass::Render()
 {
 	// 씬 그리기를 시작하기 위해 버퍼의 내용을 지움니다.

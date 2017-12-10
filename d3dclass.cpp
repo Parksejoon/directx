@@ -3,10 +3,10 @@
 //
 #include "d3dclass.h"
 
+
 //
 // CLASS FUNCTION
 //
-
 D3DClass::D3DClass()
 {
 	m_swapChain = 0;
@@ -19,11 +19,9 @@ D3DClass::D3DClass()
 	m_rasterState = 0;
 }
 
-
 D3DClass::D3DClass(const D3DClass& other)
 {
 }
-
 
 D3DClass::~D3DClass()
 {
@@ -338,18 +336,17 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	fieldOfView = (float)XM_PI / 4.0f;
 	screenAspect = (float)screenWidth / (float)screenHeight;
 
-	// 3D랜더링을 위한 투영 행렬을 생성합니다.
+	// 3D랜더링을 위한 사영 행렬을 생성합니다.
 	m_projectionMatrix = XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, screenNear, screenDepth);
 
 	// 월드 행렬을 단위 행렬로 초기화 합니다.
 	m_worldMatrix = XMMatrixIdentity();
 
-	// 2D랜더링을 위한 정투영 행렬을 생성합니다.
+	// 2D랜더링을 위한 정사영 행렬을 생성합니다.
 	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth, (float)screenHeight, screenNear, screenDepth);
 
 	return true;
 }
-
 
 void D3DClass::Shutdown()
 {
@@ -410,7 +407,6 @@ void D3DClass::Shutdown()
 	return;
 }
 
-
 void D3DClass::BeginScene(float red, float green, float blue, float alpha)
 {
 	float color[4];
@@ -431,7 +427,6 @@ void D3DClass::BeginScene(float red, float green, float blue, float alpha)
 	return;
 }
 
-
 void D3DClass::EndScene()
 {
 	// 백버퍼의 랜더링이 완료되면 백버퍼를 스크린에 표시합니다.
@@ -449,18 +444,15 @@ void D3DClass::EndScene()
 	return;
 }
 
-
 ID3D11Device* D3DClass::GetDevice()
 {
 	return m_device;
 }
 
-
 ID3D11DeviceContext* D3DClass::GetDeviceContext()
 {
 	return m_deviceContext;
 }
-
 
 void D3DClass::GetProjectionMatrix(XMMATRIX& projectionMatrix)
 {
@@ -468,20 +460,17 @@ void D3DClass::GetProjectionMatrix(XMMATRIX& projectionMatrix)
 	return;
 }
 
-
 void D3DClass::GetWorldMatrix(XMMATRIX& worldMatrix)
 {
 	worldMatrix = m_worldMatrix;
 	return;
 }
 
-
 void D3DClass::GetOrthoMatrix(XMMATRIX& orthoMatrix)
 {
 	orthoMatrix = m_orthoMatrix;
 	return;
 }
-
 
 void D3DClass::GetVideoCardInfo(char* cardName, int& memory)
 {

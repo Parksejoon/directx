@@ -8,7 +8,7 @@
 cbuffer MatrixBuffer
 {
 	matrix worldMatrix;
-	matirx viewMatrix;
+	matrix viewMatrix;
 	matrix projectionMatrix;
 };
 
@@ -35,7 +35,7 @@ PixelInputType ColorVertexShader(VertexInputType input)
 	PixelInputType output;
 
 	// point로써 표현하기 위해 w = 1.0f로 설정합니다.
-	input.positin.w = 1.0f;
+	input.position.w = 1.0f;
 
 	// 정점의 위치를 월드, 뷰, 사영의 순서로 계산합니다.
 	output.position = mul(input.position, worldMatrix);
