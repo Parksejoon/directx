@@ -2,6 +2,7 @@
 // FileName : color.vs
 //
 
+
 //
 // GLOBALS
 //
@@ -11,6 +12,7 @@ cbuffer MatrixBuffer
 	matrix viewMatrix;
 	matrix projectionMatrix;
 };
+
 
 //
 // TYPEDEFS
@@ -26,6 +28,7 @@ struct PixelInputType
 	float4 position : SV_POSITION;
 	float4 color : COLOR;
 };
+
 
 //
 // Vertex Shader

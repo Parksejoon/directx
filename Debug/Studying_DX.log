@@ -1,9 +1,1 @@
-﻿  systemclass.cpp
-  main.cpp
-  inputclass.cpp
-  graphicsclass.cpp
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(29): warning C4316: 'D3DClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
-  d3dclass.cpp
-  코드를 생성하고 있습니다...
-  Studying_DX.vcxproj -> C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\Studying_DX.exe
-  Studying_DX.vcxproj -> C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\Studying_DX.pdb (Partial PDB)
+﻿  Studying_DX.vcxproj -> C:\Users\dsm2017\documents\visual studio 2017\Projects\Studying_DX\Debug\Studying_DX.exe

@@ -4,9 +4,16 @@
 #pragma once
 
 
+//
+// LINKING
+// 
+#pragma comment(lib, "d3dcompiler.lib")
+
+
 // 
 // INCLUDES
 //
+#include <d3dcompiler.h>
 #include <d3d11.h>
 #include <DirectXMath.h>
 #include <fstream>

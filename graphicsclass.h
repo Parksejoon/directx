@@ -8,6 +8,9 @@
 // MY CLASS INCLUDES
 //
 #include "d3dclass.h"
+#include "cameraclass.h"
+#include "modelclass.h"
+#include "colorshaderclass.h"
 
 
 //
@@ -37,5 +40,8 @@ private:
 	bool Render();						// 랜더링
 
 private:
-	D3DClass* m_D3D;					// DirectX 3D를 관리하는 포인터
+	D3DClass*		  m_D3D;			// D3DX 관리
+	CameraClass*	  m_Camera;			// 카메라 관리
+	ModelClass*		  m_Model;			// 모델 관리
+	ColorShaderClass* m_ColorShader;	// 셰이더 관리
 };
