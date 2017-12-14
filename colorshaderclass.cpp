@@ -82,7 +82,7 @@ bool ColorShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	pixelShaderBuffer = NULL;
 
 	// 정점 셰이더를 컴파일합니다.
-	result = D3DCompileFromFile(vsFilename, NULL, NULL, "ColorVertexShader", "vs_5_0", 0, 0,
+	result = D3DCompileFromFile(vsFilename, NULL, NULL, "ColorVertexShader", "vs_5_0", D3D10_SHADER_ENABLE_STRICTNESS, 0,
 		&vertexShaderBuffer, &errorMessage);
 	if (FAILED(result))
 	{
@@ -101,7 +101,7 @@ bool ColorShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	}
 
 	// 픽셀 셰이더를 컴파일합니다.
-	result = D3DCompileFromFile(psFilename, NULL, NULL, "ColorPixelShader", "ps_5_0", 0, 0,
+	result = D3DCompileFromFile(psFilename, NULL, NULL, "ColorPixelShader", "ps_5_0", D3D10_SHADER_ENABLE_STRICTNESS, 0,
 		&pixelShaderBuffer, &errorMessage);
 	if (FAILED(result))
 	{
@@ -145,9 +145,9 @@ bool ColorShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 
 	plygonLayout[1].SemanticName = "COLOR";
 	plygonLayout[1].SemanticIndex = 0;
-	plygonLayout[1].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	plygonLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
 	plygonLayout[1].InputSlot = 0;
-	plygonLayout[1].AlignedByteOffset = 0;
+	plygonLayout[1].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 	plygonLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	plygonLayout[1].InstanceDataStepRate = 0;
 	
@@ -258,9 +258,9 @@ bool ColorShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 
 
 	// 행렬을 transpose하여 셰이더에서 사용할 수 있게 합니다.
-	XMMatrixTranspose(worldMatrix);
-	XMMatrixTranspose(viewMatrix);
-	XMMatrixTranspose(projectionMatrix);
+	worldMatrix = XMMatrixTranspose(worldMatrix);
+	viewMatrix = XMMatrixTranspose(viewMatrix);
+	projectionMatrix = XMMatrixTranspose(projectionMatrix);
 
 	// 상수 버퍼의 내용을 쓸 수 있도록 잠급니다.
 	result = deviceContext->Map(m_matrixBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);

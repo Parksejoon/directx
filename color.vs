@@ -37,6 +37,7 @@ PixelInputType ColorVertexShader(VertexInputType input)
 {
 	PixelInputType output;
 
+
 	// point로써 표현하기 위해 w = 1.0f로 설정합니다.
 	input.position.w = 1.0f;
 

@@ -66,10 +66,10 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 	HRESULT result;
 
 	// 정점 배열의 길이를 설정합니다.
-	m_vertexCount = 3;
+	m_vertexCount = 6;
 
 	// 인덱스 배열의 길이를 설정합니다.
-	m_indexCount = 3;
+	m_indexCount = 6;
 
 	// 정점 배열을 생성합니다.
 	vertices = new VertexType[m_vertexCount];
@@ -86,19 +86,31 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 	}
 
 	// 정점 배열에 값을 넣습니다.
-	vertices[0].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);	// 좌측 하단 
-	vertices[0].color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f); 
+	vertices[0].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);		// 좌측 상단 
+	vertices[0].color = XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f); 
 
-	vertices[1].position = XMFLOAT3(0.0f, 1.0f, 0.0f);		// 중앙 상단
-	vertices[1].color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
+	vertices[1].position = XMFLOAT3(1.0f, 1.0f, 0.0f);		// 우측 상단
+	vertices[1].color = XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f);
 
 	vertices[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);		// 우측 하단
-	vertices[2].color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
+	vertices[2].color = XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f);
+
+	vertices[3].position = XMFLOAT3(1.0f, -1.0f, 0.0f);		// 우측 하단
+	vertices[3].color = XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f);
+
+	vertices[4].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);	// 좌측 하단
+	vertices[4].color = XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f);
+
+	vertices[5].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);		// 좌측 상단
+	vertices[5].color = XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f);
 
 	// 인덱스 배열에 값을 넣습니다.
 	indices[0] = 0;		// 좌측 하단
-	indices[1] = 1;		// 중앙 상단
+	indices[1] = 1;		// 좌측 상단
 	indices[2] = 2;		// 우측 하단
+	indices[3] = 3;		// 우측 하단
+	indices[4] = 4;		// 우측 상단
+	indices[5] = 5;		// 좌측 상단
 
 	// 정점 버퍼의 description을 작성합니다.
 	vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
