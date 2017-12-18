@@ -16,10 +16,10 @@
 //
 // GLOBALS
 //
-const bool  FULL_SCREEN = false;
-const bool  VSYNC_ENABLED = true;
-const float SCREEN_DEPTH = 1000.0f;
-const float SCREEN_NEAR = 0.1f;
+const bool  FULL_SCREEN = false;		// 전체화면 여부
+const bool  VSYNC_ENABLED = true;		// 수직동기화 여부
+const float SCREEN_DEPTH = 1000.0f;		// 화면의 끝부분
+const float SCREEN_NEAR = 0.1f;			// 화면의 시작부분
 
 
 //
