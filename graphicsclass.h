@@ -10,7 +10,7 @@
 #include "d3dclass.h"
 #include "cameraclass.h"
 #include "modelclass.h"
-#include "colorshaderclass.h"
+#include "textureshaderclass.h"
 
 
 //
@@ -40,8 +40,8 @@ private:
 	bool Render();						// 랜더링
 
 private:
-	D3DClass*		  m_D3D;			// D3DX 관리
-	CameraClass*	  m_Camera;			// 카메라 관리
-	ModelClass*		  m_Model;			// 모델 관리
-	ColorShaderClass* m_ColorShader;	// 셰이더 관리
+	D3DClass*		    m_D3D;		    	// D3DX 관리
+	CameraClass*	    m_Camera;			// 카메라 관리
+	ModelClass*		    m_Model;			// 모델 관리
+	TextureShaderClass* m_TextureShader;	// 셰이더 관리
 };

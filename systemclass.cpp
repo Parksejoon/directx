@@ -185,7 +185,7 @@ void SystemClass::InitiallzeWindows(int& screenWidth, int& screenHeight)
 	m_hinstance = GetModuleHandle(NULL);
 
 	// 어플리케이션의 이름을 설정합니다.
-	m_applicationName = L"Engine";
+	m_applicationName = L"Studying_DX";
 
 	// 윈도우 클래스를 기본 설정으로 맞춥니다.
 	wc.style		 = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;

@@ -9,10 +9,10 @@
 //
 GraphicsClass::GraphicsClass()
 {
-	m_D3D		  = NULL;
-	m_Camera	  = NULL;
-	m_Model		  = NULL;
-	m_ColorShader = NULL;
+	m_D3D		    = NULL;
+	m_Camera	    = NULL;
+	m_Model		    = NULL;
+	m_TextureShader = NULL;
 }
 
 GraphicsClass::GraphicsClass(const GraphicsClass& other)
@@ -62,7 +62,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Model 객체를 초기화합니다.
-	result = m_Model->Initialize(m_D3D->GetDevice());
+	result = m_Model->Initialize(m_D3D->GetDevice(), L"../Studying_DX/data/seafloor.dds");
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -71,14 +71,14 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// ColorShader 객체를 생성합니다.
-	m_ColorShader = new ColorShaderClass;
-	if (!m_ColorShader)
+	m_TextureShader = new TextureShaderClass;
+	if (!m_TextureShader)
 	{
 		return false;
 	}
 
 	// ColorShader 객체를 초기화합니다.
-	result = m_ColorShader->Initialize(m_D3D->GetDevice(), hwnd);
+	result = m_TextureShader->Initialize(m_D3D->GetDevice(), hwnd);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the color shader object.", L"Error", MB_OK);
@@ -92,11 +92,11 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 void GraphicsClass::Shutdown()
 {
 	// ColorShader 객체를 반환합니다.
-	if (m_ColorShader)
+	if (m_TextureShader)
 	{
-		m_ColorShader->Shutdown();
-		delete m_ColorShader;
-		m_ColorShader = 0;
+		m_TextureShader->Shutdown();
+		delete m_TextureShader;
+		m_TextureShader = 0;
 	}
 
 	// Model 객체를 반환합니다.
@@ -161,7 +161,7 @@ bool GraphicsClass::Render()
 	m_Model->Render(m_D3D->GetDeviceContext());
 
 	// colorshader를 사용하여 모델을 랜더링합니다.
-	result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+	result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
 	if (!result)
 	{
 		return false;

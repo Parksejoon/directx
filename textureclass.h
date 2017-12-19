@@ -16,6 +16,8 @@
 #include <d3d11.h>
 #include <DirectXTex.h>
 
+using namespace DirectX;
+
 
 //
 // Class Name : TextureClass
@@ -35,3 +37,5 @@ public:
 private:
 	ID3D11ShaderResourceView* m_texture;
 };
+
+

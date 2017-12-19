@@ -6,7 +6,7 @@
 //
 // GLOBALS
 //
-Texture2D shaderTextue;
+Texture2D shaderTexture;
 SamplerState SampleType;
 
 
@@ -23,13 +23,13 @@ struct PixelInputType
 //
 // Pixel Shader
 //
-float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+float4 ColorPixelShader(PixelInputType input) : SV_TARGET
 {
     float4 textureColor;
 
     
     // 텍스쳐의 sample을 뽑습니다.
-    textureColor = shaderTextue.Sample(SampleType, input.tex);
+    textureColor = shaderTexture.Sample(SampleType, input.tex);
 
     return textureColor;
 }

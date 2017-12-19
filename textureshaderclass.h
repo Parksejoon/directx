@@ -26,7 +26,7 @@ private:
 	{
 		XMMATRIX world;
 		XMMATRIX view;
-		XMMATRIX projection
+		XMMATRIX projection;
 	};
 
 public:

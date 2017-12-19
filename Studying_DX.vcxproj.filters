@@ -16,6 +16,9 @@
     <Filter Include="Shader File">
       <UniqueIdentifier>{1d55617f-168d-4a12-9d4a-13315ff37e0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{a542994a-4e32-4869-a4ae-93f4208b6c1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -91,5 +94,10 @@
     <None Include="texture.ps">
       <Filter>Shader File</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="D:\PSJ\Reference\DX\dx11tut05\dx11tut05\Engine\Engine\data\seafloor.dds">
+      <Filter>data</Filter>
+    </Image>
   </ItemGroup>
 </Project>
