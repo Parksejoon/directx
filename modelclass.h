@@ -29,6 +29,7 @@ private:
 	{
 		XMFLOAT3 position;			// 정점의 위치
 		XMFLOAT2 texture;			// 텍스쳐
+		XMFLOAT3 normal;			// 법선 벡터
 	};
 
 public:
@@ -47,6 +48,7 @@ private:
 	bool InitializeBuffer(ID3D11Device*);			// 버퍼 초기화
 	void ShutdownBuffers();							// 버퍼 종료
 	void RenderBuffers(ID3D11DeviceContext*);		// 각 버퍼를 활성화
+
 	bool LoadTexture(ID3D11Device*, WCHAR*);		// 텍스쳐를 로드
 	void ReleaseTexture();							// 텍스쳐를 할당 해제
 

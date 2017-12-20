@@ -39,16 +39,16 @@
     <ClCompile Include="modelclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="colorshaderclass.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="cameraclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="textureclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="textureshaderclass.cpp">
+    <ClCompile Include="lightshaderclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="lightclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,30 +68,24 @@
     <ClInclude Include="modelclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="colorshaderclass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="cameraclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="textureclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="textureshaderclass.h">
+    <ClInclude Include="lightshaderclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="lightclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="color.vs">
+    <None Include="light.vs">
       <Filter>Shader File</Filter>
     </None>
-    <None Include="color.ps">
-      <Filter>Shader File</Filter>
-    </None>
-    <None Include="texture.vs">
-      <Filter>Shader File</Filter>
-    </None>
-    <None Include="texture.ps">
+    <None Include="light.ps">
       <Filter>Shader File</Filter>
     </None>
   </ItemGroup>

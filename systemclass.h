@@ -57,10 +57,10 @@ private:
 //
 // FUNCTION PROTOTYPES
 //
-static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);			// 이건 모르겠는데요
 
 
 //
 // GLOBALS
 //
-static SystemClass* ApplicationHandle = 0;
+static SystemClass* ApplicationHandle = 0;								// 애플리케이션의 핸들(시스템의 핸들)

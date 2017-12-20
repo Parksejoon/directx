@@ -30,10 +30,10 @@ bool TextureClass::Initialize(ID3D11Device* device, WCHAR* filename)
 	result = LoadFromDDSFile(filename, DDS_FLAGS_NONE, nullptr, image);
 	if (FAILED(result))
 	{
-		// 지금 여기서 버그터짐
 		return false;
 	}
 
+	// 텍스쳐 쉐이더 뷰를 생성합니다.
 	result = CreateShaderResourceView(device, image.GetImages(), image.GetImageCount(), image.GetMetadata(), &m_texture);
 	if (FAILED(result))
 	{

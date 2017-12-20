@@ -103,19 +103,44 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 	}
 
 	// 정점 배열에 값을 넣습니다.
-	vertices[0].position = XMFLOAT3(0.0f, 1.0f, 0.0f);		// 중앙 상단 
-	vertices[0].texture = XMFLOAT2(0.0f, 1.0f); 
+	vertices[0].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
+	vertices[0].texture = XMFLOAT2(0.0f, 1.0f);
+	vertices[0].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
 
-	vertices[1].position = XMFLOAT3(1.0f, -1.0f, 0.0f);		// 우측 하단
+	vertices[1].position = XMFLOAT3(0.0f, 1.0f, 0.0f);
 	vertices[1].texture = XMFLOAT2(0.5f, 0.0f);
+	vertices[1].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
 
-	vertices[2].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);	// 좌측 하단
+	vertices[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);
 	vertices[2].texture = XMFLOAT2(1.0f, 1.0f);
+	vertices[2].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
+
+
+	//vertices[0].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);		// 좌측 상단 
+	//vertices[0].texture = XMFLOAT2(0.0f, 0.0f); 
+
+	//vertices[1].position = XMFLOAT3(1.0f, 1.0f, 0.0f);		// 우측 상단
+	//vertices[1].texture = XMFLOAT2(1.0f, 0.0f);
+
+	//vertices[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);		// 우측 하단
+	//vertices[2].texture = XMFLOAT2(1.0f, 1.0f);
+
+	//vertices[3].position = XMFLOAT3(1.0f, -1.0f, 0.0f);		// 우측 하단
+	//vertices[3].texture = XMFLOAT2(1.0f, 1.0f);
+
+	//vertices[4].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);	// 좌측 하단
+	//vertices[4].texture = XMFLOAT2(0.0f, 1.0f);
+
+	//vertices[5].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);		// 좌측 상단
+	//vertices[5].texture = XMFLOAT2(0.0f, 0.0f);
+
+
 
 	// 인덱스 배열에 값을 넣습니다.
-	indices[0] = 0;		// 좌측 하단
-	indices[1] = 1;		// 좌측 상단
-	indices[2] = 2;		// 우측 하단
+	for (int i = 0; i < arrSize; i++)
+	{
+		indices[i] = i;
+	}
 	
 	// 정점 버퍼의 description을 작성합니다.
 	vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -213,14 +238,14 @@ bool ModelClass::LoadTexture(ID3D11Device* device, WCHAR* filename)
 	bool result;
 
 
-	//
+	// 텍스쳐를 생성합니다.
 	m_Texture = new TextureClass;
 	if (!m_Texture)
 	{
 		return false;
 	}
 
-	//
+	// 텍스쳐를 초기화합니다.
 	result = m_Texture->Initialize(device, filename);
 	if (!result)
 	{
@@ -232,7 +257,7 @@ bool ModelClass::LoadTexture(ID3D11Device* device, WCHAR* filename)
 
 void ModelClass::ReleaseTexture()
 {
-	//
+	// 텍스쳐의 할당을 해제합니다.
 	if (m_Texture)
 	{
 		m_Texture->Shutdown();
