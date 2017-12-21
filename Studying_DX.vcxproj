@@ -48,6 +48,10 @@
   <ItemGroup>
     <Image Include="D:\PSJ\Reference\DX\dx11tut05\dx11tut05\Engine\Engine\data\seafloor.dds" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\cube.txt" />
+    <Text Include="data\model.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{55F4EA8A-6178-49A8-8A66-03E1A1888A0D}</ProjectGuid>

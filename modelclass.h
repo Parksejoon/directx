@@ -9,8 +9,10 @@
 //
 #include <d3d11.h>
 #include <DirectXMath.h>
+#include <fstream>
 
 using namespace DirectX;
+using namespace std;
 
 
 //
@@ -32,12 +34,19 @@ private:
 		XMFLOAT3 normal;			// 법선 벡터
 	};
 
+	struct ModelType
+	{
+		float x, y, z;
+		float tu, tv;
+		float nx, ny, nz;
+	};
+
 public:
 	ModelClass();
 	ModelClass(const ModelClass&);
 	~ModelClass();
 
-	bool Initialize(ID3D11Device*, WCHAR*);			// 초기화
+	bool Initialize(ID3D11Device*, char*, WCHAR*);	// 초기화
 	void Shutdown();								// 종료
 	void Render(ID3D11DeviceContext*);				// 랜더링
 
@@ -51,9 +60,13 @@ private:
 
 	bool LoadTexture(ID3D11Device*, WCHAR*);		// 텍스쳐를 로드
 	void ReleaseTexture();							// 텍스쳐를 할당 해제
+	
+	bool LoadModel(char*);							// 모델을 로드
+	void ReleaseModel();							// 모델을 할당 해제
 
 private:
 	ID3D11Buffer *m_vertexBuffer, *m_indexBuffer;	// 정점버퍼와 인덱스버퍼
 	int m_vertexCount, m_indexCount;				// 각 버퍼의 개수
 	TextureClass* m_Texture;						// 텍스쳐
+	ModelType* m_model;								// 모델
 };

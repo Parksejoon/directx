@@ -1,5 +1,5 @@
 //
-// Filename: light.vs
+// FileName : light.vs
 //
 
 
@@ -39,22 +39,22 @@ PixelInputType LightVertexShader(VertexInputType input)
 {
     PixelInputType output;
     
-
-	// Change the position vector to be 4 units for proper matrix calculations.
+    
+    // point로써 나타내기 위해 w = 1.0f으로 설정합니다.
     input.position.w = 1.0f;
 
-	// Calculate the position of the vertex against the world, view, and projection matrices.
+	// 월드, 뷰, 사영행렬을 사용하여 연산을 합니다.
     output.position = mul(input.position, worldMatrix);
     output.position = mul(output.position, viewMatrix);
     output.position = mul(output.position, projectionMatrix);
     
-	// Store the texture coordinates for the pixel shader.
+	// 텍스쳐의 좌표를 픽셀셰이더를 위해 저장해둡니다.
     output.tex = input.tex;
     
-	// Calculate the normal vector against the world matrix only.
+	// 월드 행렬을 사용하여 노말 벡터를 연산합니다.
     output.normal = mul(input.normal, (float3x3) worldMatrix);
 	
-    // Normalize the normal vector.
+    // 노말 벡터를 정규화합니다.
     output.normal = normalize(output.normal);
 
     return output;

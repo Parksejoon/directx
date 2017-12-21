@@ -1,5 +1,5 @@
 //
-// Filename: light.ps
+// FileName : light.ps
 //
 
 
@@ -38,20 +38,20 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     float lightIntensity;
     float4 color;
 
-
-	// Sample the pixel color from the texture using the sampler at this texture coordinate location.
+    
+    // 이 텍스쳐 좌표 위치에 존재하는 샘플러를 사용하여 텍스쳐로부터 표본을 뽑습니다.
     textureColor = shaderTexture.Sample(SampleType, input.tex);
 
-	// Invert the light direction for calculations.
+	// 연산을 위해 변환을 해둡니다.
     lightDir = -lightDirection;
-
-    // Calculate the amount of light on this pixel.
+    
+    // 이 픽셀의 빛의 양을 계산합니다.
     lightIntensity = saturate(dot(input.normal, lightDir));
 
-    // Determine the final amount of diffuse color based on the diffuse color combined with the light intensity.
+    // 조도와 결합된 색상을 기초로 색상의 최종 양을 결정합니다.
     color = saturate(diffuseColor * lightIntensity);
 
-    // Multiply the texture pixel and the final diffuse color to get the final pixel color result.
+    // 텍스쳐의 색과 계산된 색을 연산하여 최종적인 결과를 얻어냅니다.
     color = color * textureColor;
 
     return color;

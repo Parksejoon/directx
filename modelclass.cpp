@@ -12,6 +12,7 @@ ModelClass::ModelClass()
 	m_vertexBuffer = 0;
 	m_indexBuffer = 0;
 	m_Texture = 0;
+	m_model = 0;
 }
 
 ModelClass::ModelClass(const ModelClass& other)
@@ -22,10 +23,17 @@ ModelClass::~ModelClass()
 {
 }
 
-bool ModelClass::Initialize(ID3D11Device* device, WCHAR* textureFilename)
+bool ModelClass::Initialize(ID3D11Device* device, char* modelFilename, WCHAR* textureFilename)
 {
 	bool result;
 
+
+	// 모델 데이터를 로드합니다.
+	result = LoadModel(modelFilename);
+	if (!result)
+	{
+		return false;
+	}
 
 	// 정점 버퍼와 인덱스 버퍼를 초기화합니다.
 	result = InitializeBuffer(device);
@@ -52,6 +60,9 @@ void ModelClass::Shutdown()
 	// 정점 버퍼와 인덱스 버퍼를 해제합니다.
 	ShutdownBuffers();
 
+	// 모델 데이터를 할당 해제합니다.
+	ReleaseModel();
+
 	return;
 }
 
@@ -75,18 +86,12 @@ ID3D11ShaderResourceView* ModelClass::GetTexture()
 
 bool ModelClass::InitializeBuffer(ID3D11Device* device)
 {
-	const int arrSize = 3;
 	VertexType* vertices;
 	unsigned long* indices;
 	D3D11_BUFFER_DESC vertexBufferDesc, indexBufferDesc;
 	D3D11_SUBRESOURCE_DATA vertexData, indexData;
 	HRESULT result;
 
-	// 정점 배열의 길이를 설정합니다.
-	m_vertexCount = arrSize;
-
-	// 인덱스 배열의 길이를 설정합니다.
-	m_indexCount = arrSize;
 
 	// 정점 배열을 생성합니다.
 	vertices = new VertexType[m_vertexCount];
@@ -102,46 +107,16 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 		return false;
 	}
 
-	// 정점 배열에 값을 넣습니다.
-	vertices[0].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
-	vertices[0].texture = XMFLOAT2(0.0f, 1.0f);
-	vertices[0].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
-
-	vertices[1].position = XMFLOAT3(0.0f, 1.0f, 0.0f);
-	vertices[1].texture = XMFLOAT2(0.5f, 0.0f);
-	vertices[1].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
-
-	vertices[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);
-	vertices[2].texture = XMFLOAT2(1.0f, 1.0f);
-	vertices[2].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
-
-
-	//vertices[0].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);		// 좌측 상단 
-	//vertices[0].texture = XMFLOAT2(0.0f, 0.0f); 
-
-	//vertices[1].position = XMFLOAT3(1.0f, 1.0f, 0.0f);		// 우측 상단
-	//vertices[1].texture = XMFLOAT2(1.0f, 0.0f);
-
-	//vertices[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);		// 우측 하단
-	//vertices[2].texture = XMFLOAT2(1.0f, 1.0f);
-
-	//vertices[3].position = XMFLOAT3(1.0f, -1.0f, 0.0f);		// 우측 하단
-	//vertices[3].texture = XMFLOAT2(1.0f, 1.0f);
-
-	//vertices[4].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);	// 좌측 하단
-	//vertices[4].texture = XMFLOAT2(0.0f, 1.0f);
-
-	//vertices[5].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);		// 좌측 상단
-	//vertices[5].texture = XMFLOAT2(0.0f, 0.0f);
-
-
-
-	// 인덱스 배열에 값을 넣습니다.
-	for (int i = 0; i < arrSize; i++)
+	//
+	for (int i = 0; i < m_vertexCount; i++)
 	{
+		vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z);
+		vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+		vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+
 		indices[i] = i;
 	}
-	
+
 	// 정점 버퍼의 description을 작성합니다.
 	vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	vertexBufferDesc.ByteWidth = sizeof(VertexType) * m_vertexCount;
@@ -267,3 +242,73 @@ void ModelClass::ReleaseTexture()
 
 	return;
 }
+
+bool ModelClass::LoadModel(char* filename)
+{
+	ifstream fin;
+	char input;
+	
+
+	// 모델 파일을 엽니다.
+	fin.open(filename);
+
+	// 만약 모델파일을 여는데 실패하면 중단시킵니다.
+	if (fin.fail())
+	{
+		return false;
+	}
+
+	// 정점의 개수전까지 읽어들입니다.
+	fin.get(input);
+	while (input != ':')
+	{
+		fin.get(input);
+	}
+
+	// 정점의 개수를 읽습니다.
+	fin >> m_vertexCount;
+
+	// 인덱스의 수와 정점의 수를 동일하게 설정합니다.
+	m_indexCount = m_vertexCount;
+
+	// 읽어들인 정점의 개수를 사용하여 모델을 생성합니다.
+	m_model = new ModelType[m_vertexCount];
+	if (!m_model)
+	{
+		return false;
+	}
+
+	// 모델의 데이터 전까지 읽어들입니다.
+	fin.get(input);
+	while (input != ':')
+	{
+		fin.get(input);
+	}
+	fin.get(input);
+	fin.get(input);
+
+	// 정점 정보를 읽어들입니다.
+	for (int i = 0; i < m_vertexCount; i++)
+	{
+		fin >> m_model[i].x >> m_model[i].y >> m_model[i].z;
+		fin >> m_model[i].tu >> m_model[i].tv;
+		fin >> m_model[i].nx >> m_model[i].ny >> m_model[i].nz;
+	}
+
+	// 모델 파일을 닫습니다.
+	fin.close();
+
+	return true;
+}
+
+void ModelClass::ReleaseModel()
+{
+	if (m_model)
+	{
+		delete[] m_model;
+		m_model = 0;
+	}
+
+	return;
+}
+

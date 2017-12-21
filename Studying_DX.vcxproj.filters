@@ -94,4 +94,12 @@
       <Filter>data</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\cube.txt">
+      <Filter>data</Filter>
+    </Text>
+    <Text Include="data\model.txt">
+      <Filter>data</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
