@@ -63,7 +63,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Model 객체를 초기화합니다.
-	result = m_Model->Initialize(m_D3D->GetDevice(), "../Studying_DX/data/model.txt", L"../Studying_DX/data/seafloor.dds");
+	result = m_Model->Initialize(m_D3D->GetDevice(), "../Studying_DX/data/model.txt", L"../Studying_DX/data/sap.dds");
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
@@ -98,6 +98,8 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	m_Light->SetAmbientColor(0.15f, 0.15f, 0.15f, 1.0f);
 	m_Light->SetDiffuseColor(1.0f, 1.0f, 1.0f, 1.0f);
 	m_Light->SetDirection(0.0f, 0.0f, 1.0f);
+	m_Light->SetSpecularColor(1.0f, 0.0f, 0.0f, 1.0f);
+	m_Light->SetSpecularPower(32.0f);
 
 	return true;
 }
@@ -152,7 +154,7 @@ bool GraphicsClass::Frame()
 	static float rotation = 0.0f;
 
 	// 매 프래임마다 각도를 갱신합니다.
-	rotation += (float)XM_PI * 0.1f;
+	rotation += (float)XM_PI * 0.05f;
 	if (rotation > 360.0f)
 	{
 		rotation -= 360.0f;
@@ -191,10 +193,10 @@ bool GraphicsClass::Render(float rotation)
 	// 그래픽 파이프라인에 모델의 정점버퍼와 인덱스버퍼를 넣어 그릴 준비를 합니다. 
 	m_Model->Render(m_D3D->GetDeviceContext());
 
-
-	// colorshader를 사용하여 모델을 랜더링합니다.
-	result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix,
-		viewMatrix, projectionMatrix, m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetAmbientColor(), m_Light->GetDiffuseColor());
+	// 라이트 셰이더를 사용하여 모델을 랜더링합니다.
+	result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, 
+				       m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetAmbientColor(), m_Light->GetDiffuseColor(), 
+				       m_Camera->GetPosition(), m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
 	if (!result)
 	{
 		return false;

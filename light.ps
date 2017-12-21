@@ -13,7 +13,8 @@ cbuffer LightBuffer
     float4 ambientColor;
     float4 diffuseColor;
     float3 lightDirection;
-    float padding;
+    float  specularPower;
+    float4 specularColor;
 };
 
 
@@ -25,6 +26,7 @@ struct PixelInputType
     float4 position : SV_POSITION;
     float2 tex : TEXCOORD0;
     float3 normal : NORMAL;
+    float3 viewDirection : TEXCOORD1;
 };
 
 
@@ -37,6 +39,8 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     float3 lightDir;
     float lightIntensity;
     float4 color;
+    float3 refleciton;
+    float4 specular;
 
     
     // 이 텍스쳐 좌표 위치에 존재하는 샘플러를 사용하여 텍스쳐로부터 표본을 뽑습니다.
@@ -55,13 +59,22 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     {
         // 조도와 결합된 색상을 기초로 색상의 최종 양을 결정합니다.
         color += (diffuseColor * lightIntensity);
-    }
 
-    // 최종적인 빛의 색상을 스며들게합니다.
-    color = saturate(color);
+        // 최종적인 빛의 색상을 스며들게합니다.
+        color = saturate(color);
+
+        // 반사 벡터를 계산합니다.
+        refleciton = normalize(2 * lightIntensity * input.normal - lightDir);
+
+        // 정반사 벡터를 계산합니다.
+        specular = pow(saturate(dot(refleciton, input.viewDirection)), specularPower);
+    }
 
     // 텍스쳐의 색과 계산된 색을 연산하여 최종적인 결과를 얻어냅니다.
     color = color * textureColor;
+
+    // 정반사광을 적용시킵니다.
+    color = saturate(color + specular);
 
     return color;
 }
