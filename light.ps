@@ -8,9 +8,9 @@
 //
 Texture2D shaderTexture;
 SamplerState SampleType;
-
 cbuffer LightBuffer
 {
+    float4 ambientColor;
     float4 diffuseColor;
     float3 lightDirection;
     float padding;
@@ -42,14 +42,23 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     // 이 텍스쳐 좌표 위치에 존재하는 샘플러를 사용하여 텍스쳐로부터 표본을 뽑습니다.
     textureColor = shaderTexture.Sample(SampleType, input.tex);
 
+    // 최소한의 주변광을 가지도록 기본값을 맞춰줍니다.
+    color = ambientColor;
+
 	// 연산을 위해 변환을 해둡니다.
     lightDir = -lightDirection;
     
     // 이 픽셀의 빛의 양을 계산합니다.
     lightIntensity = saturate(dot(input.normal, lightDir));
 
-    // 조도와 결합된 색상을 기초로 색상의 최종 양을 결정합니다.
-    color = saturate(diffuseColor * lightIntensity);
+    if (lightIntensity > 0.0f)
+    {
+        // 조도와 결합된 색상을 기초로 색상의 최종 양을 결정합니다.
+        color += (diffuseColor * lightIntensity);
+    }
+
+    // 최종적인 빛의 색상을 스며들게합니다.
+    color = saturate(color);
 
     // 텍스쳐의 색과 계산된 색을 연산하여 최종적인 결과를 얻어냅니다.
     color = color * textureColor;

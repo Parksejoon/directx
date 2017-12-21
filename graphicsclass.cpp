@@ -53,7 +53,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Camera의 위치를 설정합니다.
-	m_Camera->SetPosition(0.0f, 0.0f, -100.0f);
+	m_Camera->SetPosition(0.0f, 55.0f, -230.0f);
 
 	// Model 객체를 생성합니다.
 	m_Model = new ModelClass;
@@ -95,6 +95,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// light 객체를 초기화합니다.
+	m_Light->SetAmbientColor(0.15f, 0.15f, 0.15f, 1.0f);
 	m_Light->SetDiffuseColor(1.0f, 1.0f, 1.0f, 1.0f);
 	m_Light->SetDirection(0.0f, 0.0f, 1.0f);
 
@@ -193,7 +194,7 @@ bool GraphicsClass::Render(float rotation)
 
 	// colorshader를 사용하여 모델을 랜더링합니다.
 	result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix,
-		viewMatrix, projectionMatrix, m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor());
+		viewMatrix, projectionMatrix, m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetAmbientColor(), m_Light->GetDiffuseColor());
 	if (!result)
 	{
 		return false;

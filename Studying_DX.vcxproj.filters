@@ -93,6 +93,9 @@
     <Image Include="D:\PSJ\Reference\DX\dx11tut05\dx11tut05\Engine\Engine\data\seafloor.dds">
       <Filter>data</Filter>
     </Image>
+    <Image Include="data\sap.dds">
+      <Filter>data</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\cube.txt">

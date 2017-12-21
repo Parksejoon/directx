@@ -31,6 +31,7 @@ private:
 
 	struct LightBufferType
 	{
+		XMFLOAT4 ambientColor;
 		XMFLOAT4 diffuseColor;
 		XMFLOAT3 lightDirection;
 		float padding;			// 버퍼를 생성할 때 16의 배수가 되어야 하므로 채워넣는 변수입니다.
@@ -44,14 +45,14 @@ public:
 	bool Initialize(ID3D11Device*, HWND);													// 초기화
 	void Shutdown();																		// 종료
 	bool Render(ID3D11DeviceContext*, int, XMMATRIX, XMMATRIX, XMMATRIX,
-				ID3D11ShaderResourceView*, XMFLOAT3, XMFLOAT4);								// 렌더링
+				ID3D11ShaderResourceView*, XMFLOAT3, XMFLOAT4, XMFLOAT4);					// 렌더링
 private:
 	bool InitializeShader(ID3D11Device*, HWND, WCHAR*, WCHAR*);								// 셰이더 초기화
 	void ShutdownShader();																	// 셰이더 종료
 	void OutputShaderErrorMessage(ID3D10Blob*, HWND, WCHAR*);								// 셰이더 에러 메세지를 출력하는 함수
 
 	bool SetShaderParameters(ID3D11DeviceContext*, XMMATRIX, XMMATRIX, 
-				XMMATRIX, ID3D11ShaderResourceView*, XMFLOAT3, XMFLOAT4);					// 셰이더의 인자를 입력하는 함수
+				XMMATRIX, ID3D11ShaderResourceView*, XMFLOAT3, XMFLOAT4, XMFLOAT4);			// 셰이더의 인자를 입력하는 함수
 	void RenderShader(ID3D11DeviceContext*, int);											// 셰이더를 렌더링하는 함수
 
 private:

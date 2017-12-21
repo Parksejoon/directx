@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="D:\PSJ\Reference\DX\dx11tut05\dx11tut05\Engine\Engine\data\seafloor.dds" />
+    <Image Include="data\sap.dds" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\cube.txt" />
