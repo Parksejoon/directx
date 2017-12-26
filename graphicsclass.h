@@ -9,9 +9,11 @@
 //
 #include "d3dclass.h"
 #include "cameraclass.h"
-#include "modelclass.h"
-#include "lightshaderclass.h"
-#include "lightclass.h"
+//#include "modelclass.h"
+#include "textureshaderclass.h"
+#include "bitmapclass.h"
+//#include "lightshaderclass.h"
+//#include "lightclass.h"
 
 
 //
@@ -43,7 +45,9 @@ private:
 private:
 	D3DClass*		    m_D3D;		    	// D3DX 
 	CameraClass*	    m_Camera;			// 카메라
-	ModelClass*		    m_Model;			// 모델
-	LightShaderClass*	m_LightShader;		// 조명 셰이더
-	LightClass*			m_Light;			// 조명
+	TextureShaderClass* m_TextureShader;	// 텍스쳐 셰이더
+	BitmapClass*		m_Bitmap;			// 비트맵
+	//ModelClass*		    m_Model;			// 모델
+	//LightShaderClass*		m_LightShader;		// 조명 셰이더
+	//LightClass*			m_Light;			// 조명
 };

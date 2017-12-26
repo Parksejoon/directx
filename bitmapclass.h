@@ -25,7 +25,7 @@ class BitmapClass
 private:
 	struct VertexType
 	{
-		XMFLOAT3 pisition;
+		XMFLOAT3 position;
 		XMFLOAT2 texture;
 	};
 

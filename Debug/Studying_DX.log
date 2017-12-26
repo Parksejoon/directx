@@ -1,4 +1,2 @@
-﻿  graphicsclass.cpp
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(33): warning C4316: 'D3DClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(49): warning C4316: 'CameraClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
+﻿  textureshaderclass.cpp
   Studying_DX.vcxproj -> C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\Studying_DX.exe
