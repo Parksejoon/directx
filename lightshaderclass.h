@@ -22,26 +22,26 @@ using namespace std;
 class LightShaderClass
 {
 private:
-	struct MatrixBufferType
+	struct MatrixBufferType							// 행렬 버퍼 타입
 	{
-		XMMATRIX world;
-		XMMATRIX view;
-		XMMATRIX projection;
+		XMMATRIX world;				// 월드 행렬
+		XMMATRIX view;				// 뷰 행렬
+		XMMATRIX projection;		// 사영 행렬
 	};
 
-	struct CameraBufferType
+	struct CameraBufferType							// 카메라 버퍼 타입
 	{
-		XMFLOAT3 cameraPosition;
-		float padding;
+		XMFLOAT3 cameraPosition;	// 카메라 위치
+		float padding;				// 패딩
 	};
-
-	struct LightBufferType
+	
+	struct LightBufferType							// 라이트 버퍼 타입
 	{
-		XMFLOAT4 ambientColor;
-		XMFLOAT4 diffuseColor;
-		XMFLOAT3 lightDirection;
-		float specularPower;
-		XMFLOAT4 specularColor;
+		XMFLOAT4 ambientColor;		// 주변광 색
+		XMFLOAT4 diffuseColor;		// 분산광 색
+		XMFLOAT3 lightDirection;	// 빛의 방향
+		float specularPower;		// 반사광 크기
+		XMFLOAT4 specularColor;		// 반사광 색
 	};
 
 public:

@@ -22,12 +22,15 @@
     <ClCompile Include="bitmapclass.cpp" />
     <ClCompile Include="cameraclass.cpp" />
     <ClCompile Include="d3dclass.cpp" />
+    <ClCompile Include="fontclass.cpp" />
+    <ClCompile Include="fontshaderclass.cpp" />
     <ClCompile Include="graphicsclass.cpp" />
     <ClCompile Include="inputclass.cpp" />
     <ClCompile Include="lightclass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="modelclass.cpp" />
     <ClCompile Include="systemclass.cpp" />
+    <ClCompile Include="textclass.cpp" />
     <ClCompile Include="textureclass.cpp" />
     <ClCompile Include="lightshaderclass.cpp" />
     <ClCompile Include="textureshaderclass.cpp" />
@@ -36,16 +39,21 @@
     <ClInclude Include="bitmapclass.h" />
     <ClInclude Include="cameraclass.h" />
     <ClInclude Include="d3dclass.h" />
+    <ClInclude Include="fontclass.h" />
+    <ClInclude Include="fontshaderclass.h" />
     <ClInclude Include="graphicsclass.h" />
     <ClInclude Include="inputclass.h" />
     <ClInclude Include="lightclass.h" />
     <ClInclude Include="modelclass.h" />
     <ClInclude Include="systemclass.h" />
+    <ClInclude Include="textclass.h" />
     <ClInclude Include="textureclass.h" />
     <ClInclude Include="lightshaderclass.h" />
     <ClInclude Include="textureshaderclass.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="font.ps" />
+    <None Include="font.vs" />
     <None Include="light.ps" />
     <None Include="light.vs" />
     <None Include="texture.ps" />
@@ -53,10 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="D:\PSJ\Reference\DX\dx11tut05\dx11tut05\Engine\Engine\data\seafloor.dds" />
+    <Image Include="data\font.dds" />
     <Image Include="data\sap.dds" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\cube.txt" />
+    <Text Include="data\fontdata.txt" />
     <Text Include="data\model.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

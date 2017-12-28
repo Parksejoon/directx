@@ -57,6 +57,15 @@
     <ClCompile Include="textureshaderclass.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="fontclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="fontshaderclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="textclass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="systemclass.h">
@@ -92,6 +101,15 @@
     <ClInclude Include="textureshaderclass.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="fontclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="fontshaderclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="textclass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="light.vs">
@@ -106,6 +124,12 @@
     <None Include="texture.vs">
       <Filter>Shader File</Filter>
     </None>
+    <None Include="font.ps">
+      <Filter>Shader File</Filter>
+    </None>
+    <None Include="font.vs">
+      <Filter>Shader File</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="D:\PSJ\Reference\DX\dx11tut05\dx11tut05\Engine\Engine\data\seafloor.dds">
@@ -114,12 +138,18 @@
     <Image Include="data\sap.dds">
       <Filter>data</Filter>
     </Image>
+    <Image Include="data\font.dds">
+      <Filter>data</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\cube.txt">
       <Filter>data</Filter>
     </Text>
     <Text Include="data\model.txt">
+      <Filter>data</Filter>
+    </Text>
+    <Text Include="data\fontdata.txt">
       <Filter>data</Filter>
     </Text>
   </ItemGroup>

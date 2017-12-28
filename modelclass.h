@@ -34,11 +34,11 @@ private:
 		XMFLOAT3 normal;			// 법선 벡터
 	};
 
-	struct ModelType
+	struct ModelType								// 모델 타입
 	{
-		float x, y, z;
-		float tu, tv;
-		float nx, ny, nz;
+		float x, y, z;				// X, Y, Z 좌표
+		float tu, tv;				// 텍스쳐 UV
+		float nx, ny, nz;			// 노말 벡터의 X, Y, Z 좌표
 	};
 
 public:

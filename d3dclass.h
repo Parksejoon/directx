@@ -44,10 +44,12 @@ public:
 	void GetProjectionMatrix(XMMATRIX&);						// 사영 행렬을 레퍼런스로 받아옴
 	void GetWorldMatrix(XMMATRIX&);								// 월드 행렬을 레퍼런스로 받아옴
 	void GetOrthoMatrix(XMMATRIX&);								// 정사영 행렬을 레퍼런스로 받아옴
-
 	void GetVideoCardInfo(char*, int&);							// 그래픽카드의 정보를 받아옴
+	
 	void TurnZBufferOn();										// Z버퍼를 킴
 	void TurnZBufferOff();										// Z버퍼를 끔
+	void TurnOnAlphaBlending();									// 블렌딩을 킴
+	void TurnOffAlphaBlending();								// 블렌딩을 끔
 
 private:
 	bool	m_vsync_enabled;									// 수직 동기화 여부
@@ -62,8 +64,13 @@ private:
 	ID3D11DepthStencilState*	m_depthStencilState;			// 스텐실 상대
 	ID3D11DepthStencilView*		m_depthStencilView;				// 스텐실 뷰
 	ID3D11RasterizerState*		m_rasterState;					// 레스터 상태
+	
 	XMMATRIX					m_projectionMatrix;				// 사영행렬
 	XMMATRIX					m_worldMatrix;					// 월드행렬
 	XMMATRIX					m_orthoMatrix;					// 정사영행렬
+	
 	ID3D11DepthStencilState*    m_depthDisabledStencilState;	// 깊이 스텐실 상태
+
+	ID3D11BlendState*			m_alphaEnableBlendingState;		// 블렌딩 켜진 상태
+	ID3D11BlendState*			m_alphaDisableBlendingState;	// 블렌딩 꺼진 상태
 };

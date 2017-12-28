@@ -18,6 +18,8 @@ D3DClass::D3DClass()
 	m_depthStencilView = 0;
 	m_rasterState = 0;
 	m_depthDisabledStencilState = 0;
+	m_alphaEnableBlendingState = 0;
+	m_alphaDisableBlendingState = 0;
 }
 
 D3DClass::D3DClass(const D3DClass& other)
@@ -49,6 +51,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	D3D11_VIEWPORT viewport;
 	float fieldOfView, screenAspect;
 	D3D11_DEPTH_STENCIL_DESC depthDisabledStencilDesc;
+	D3D11_BLEND_DESC blendStateDescription;
 
 
 	// 수직 동기화 설정을 저장합니다.

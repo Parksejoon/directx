@@ -5,7 +5,7 @@
 
 
 //
-// CLASSFUNCTION
+// CLASS FUNCTION
 //
 CameraClass::CameraClass()
 {
