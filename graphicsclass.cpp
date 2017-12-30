@@ -11,8 +11,9 @@ GraphicsClass::GraphicsClass()
 {
 	m_D3D		    = NULL;
 	m_Camera	    = NULL;
-	m_TextureShader = NULL;
-	m_Bitmap		= NULL;
+	m_Text			= NULL;
+	//m_TextureShader	= NULL;
+	//m_Bitmap			= NULL;
 	//m_Model		    = NULL;
 	//m_LightShader		= NULL;
 	//m_Light			= NULL;
@@ -29,6 +30,7 @@ GraphicsClass::~GraphicsClass()
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
+	XMMATRIX baseViewMatrix;
 
 
 	// Direct3D 객체를 생성합니다.
@@ -57,35 +59,56 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	// Camera의 위치를 설정합니다.
 	m_Camera->SetPosition(0.0f, 55.0f, -230.0f);
 
-	// 텍스쳐 셰이더 오브젝트를 생성합니다.
-	m_TextureShader = new TextureShaderClass;
-	if (!m_TextureShader)
+	// 2d 유저 인터페이스를 렌더링하기 위해 카메라를 통해 베이스 뷰 매트릭스를 초기화합니다.
+	m_Camera->SetPosition(0.0f, 0.0f, -1.0f);
+	m_Camera->Render();
+	m_Camera->GetViewMatrix(baseViewMatrix);
+
+	// 텍스트 오브젝트를 생성합니다.
+	m_Text = new TextClass;
+	if (!m_Text)
 	{
 		return false;
 	}
 
-	// 텍스쳐 셰이더 오브젝트를 초기화합니다.
-	result = m_TextureShader->Initialize(m_D3D->GetDevice(), hwnd);
+	// 텍스트 객체를 초기화합니다.
+	result = m_Text->Initialize(m_D3D->GetDevice(), m_D3D->GetDeviceContext(), hwnd, screenWidth, screenHeight, baseViewMatrix);
 	if (!result)
 	{
-		MessageBox(hwnd, L"Could not initialize the shader object.", L"Error", MB_OK);
+		MessageBox(hwnd, L"Could not initialize the text object.", L"Error", MB_OK);
+
 		return false;
 	}
 
-	// 비트맵 오브젝트를 생성합니다.
-	m_Bitmap = new BitmapClass();
-	if (!m_Bitmap)
-	{
-		return false;
-	}
+	//// 텍스쳐 셰이더 오브젝트를 생성합니다.
+	//m_TextureShader = new TextureShaderClass;
+	//if (!m_TextureShader)
+	//{
+	//	return false;
+	//}
 
-	// 비트맵 오브젝트를 초기화합니다.
-	result = m_Bitmap->Initialize(m_D3D->GetDevice(), screenWidth, screenHeight, L"../Studying_DX/data/seafloor.dds", 256, 256);
-	if(!result)
-	{
-		MessageBox(hwnd, L"Could not initialize the bitmap object.", L"Error", MB_OK);
-		return false;
-	}
+	//// 텍스쳐 셰이더 오브젝트를 초기화합니다.
+	//result = m_TextureShader->Initialize(m_D3D->GetDevice(), hwnd);
+	//if (!result)
+	//{
+	//	MessageBox(hwnd, L"Could not initialize the shader object.", L"Error", MB_OK);
+	//	return false;
+	//}
+
+	//// 비트맵 오브젝트를 생성합니다.
+	//m_Bitmap = new BitmapClass();
+	//if (!m_Bitmap)
+	//{
+	//	return false;
+	//}
+
+	//// 비트맵 오브젝트를 초기화합니다.
+	//result = m_Bitmap->Initialize(m_D3D->GetDevice(), screenWidth, screenHeight, L"../Studying_DX/data/seafloor.dds", 256, 256);
+	//if(!result)
+	//{
+	//	MessageBox(hwnd, L"Could not initialize the bitmap object.", L"Error", MB_OK);
+	//	return false;
+	//}
 
 	//// Model 객체를 생성합니다.
 	//m_Model = new ModelClass;
@@ -138,21 +161,29 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 
 void GraphicsClass::Shutdown()
 {
-	// 비트맵 오브젝트를 할당 해제합니다.
-	if(m_Bitmap)
+	// 텍스트 오브젝트를 할당 해제합니다.
+	if (m_Text)
 	{
-		m_Bitmap->Shutdown();
-		delete m_Bitmap;
-		m_Bitmap = 0;
+		m_Text->Shutdown();
+		delete m_Text;
+		m_Text = 0;
 	}
 
-	// 텍스쳐 셰이더 오브젝트를 할당 해제합니다.
-	if(m_TextureShader)
-	{
-		m_TextureShader->Shutdown();
-		delete m_TextureShader;
-		m_TextureShader = 0;
-	}
+	//// 비트맵 오브젝트를 할당 해제합니다.
+	//if(m_Bitmap)
+	//{
+	//	m_Bitmap->Shutdown();
+	//	delete m_Bitmap;
+	//	m_Bitmap = 0;
+	//}
+
+	//// 텍스쳐 셰이더 오브젝트를 할당 해제합니다.
+	//if(m_TextureShader)
+	//{
+	//	m_TextureShader->Shutdown();
+	//	delete m_TextureShader;
+	//	m_TextureShader = 0;
+	//}
 
 	//// LightShader 객체를 반환합니다.
 	//if (m_LightShader)
@@ -240,19 +271,32 @@ bool GraphicsClass::Render(float rotation)
 	// 2D 렌더링을 위해 Z버퍼를 끕니다.
 	m_D3D->TurnZBufferOff();
 
-	// 비트맵 정점, 인덱스 버퍼를 그래픽스 파이프라인에 넣습니다.
-	result = m_Bitmap->Render(m_D3D->GetDeviceContext(), 100, 100);
+	// 텍스트를 렌더링 하기 전에 알파 블렌딩을 켭니다.
+	m_D3D->TurnOnAlphaBlending();
+
+	// 텍스트 문자열을 렌더링합니다.
+	result = m_Text->Render(m_D3D->GetDeviceContext(), worldMatrix, orthoMatrix);
 	if (!result)
 	{
 		return false;
 	}
 
-	// 텍스쳐 셰이더를 사용해 비트맵을 렌더링합니다.
-	result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
-	if (!result)
-	{
-		return false;
-	}
+	// 텍스트를 렌더링 한 후에 알파 블렌딩을 끕니다.
+	m_D3D->TurnOffAlphaBlending();
+
+	//// 비트맵 정점, 인덱스 버퍼를 그래픽스 파이프라인에 넣습니다.
+	//result = m_Bitmap->Render(m_D3D->GetDeviceContext(), 100, 100);
+	//if (!result)
+	//{
+	//	return false;
+	//}
+
+	//// 텍스쳐 셰이더를 사용해 비트맵을 렌더링합니다.
+	//result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Bitmap->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix, m_Bitmap->GetTexture());
+	//if (!result)
+	//{
+	//	return false;
+	//}
 
 	// 2D 렌더링이 끝났으므로 Z버퍼를 원래대로 돌려둡니다.
 	m_D3D->TurnZBufferOn();

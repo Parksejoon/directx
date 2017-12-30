@@ -1,35 +1,22 @@
-﻿  lightshaderclass.cpp
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\lightshaderclass.cpp(324): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  textureclass.cpp
-  textclass.cpp
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\textclass.cpp(155): warning C4101: 'indexBufferDesc' :참조되지 않은 지역 변수입니다.
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\textclass.cpp(156): warning C4101: 'vertexData' :참조되지 않은 지역 변수입니다.
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\textclass.cpp(157): warning C4101: 'result' :참조되지 않은 지역 변수입니다.
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\textclass.cpp(156): warning C4101: 'indexData' :참조되지 않은 지역 변수입니다.
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\textclass.cpp(155): warning C4101: 'vertexBufferDesc' :참조되지 않은 지역 변수입니다.
-  lightclass.cpp
-  fontshaderclass.cpp
-  fontclass.cpp
-  cameraclass.cpp
-  코드를 생성하고 있습니다...
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\textclass.cpp(195): warning C4715: 'TextClass::InitializeSentence': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  컴파일하고 있습니다...
-  bitmapclass.cpp
+﻿  textclass.cpp
+  graphicsclass.cpp
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(37): warning C4316: 'D3DClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(53): warning C4316: 'CameraClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
+c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(68): warning C4316: 'TextClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
+  d3dclass.cpp
   코드를 생성하고 있습니다...
   컴파일하고 있습니다...
   systemclass.cpp
   main.cpp
-  graphicsclass.cpp
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(35): warning C4316: 'D3DClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(51): warning C4316: 'CameraClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
   코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  textureshaderclass.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  modelclass.cpp
-  코드를 생성하고 있습니다...
-textclass.obj : error LNK2019: "private: bool __thiscall TextClass::UpdateSentence(struct TextClass::SentenceType *,char *,int,int,float,float,float,struct ID3D11DeviceContext *)" (?UpdateSentence@TextClass@@AAE_NPAUSentenceType@1@PADHHMMMPAUID3D11DeviceContext@@@Z) 외부 기호(참조 위치: "public: bool __thiscall TextClass::Initialize(struct ID3D11Device *,struct ID3D11DeviceContext *,struct HWND__ *,int,int,struct DirectX::XMMATRIX)" (?Initialize@TextClass@@QAE_NPAUID3D11Device@@PAUID3D11DeviceContext@@PAUHWND__@@HHUXMMATRIX@DirectX@@@Z) 함수)에서 확인하지 못했습니다.
-textclass.obj : error LNK2019: "private: void __thiscall TextClass::ReleaseSentence(struct TextClass::SentenceType * *)" (?ReleaseSentence@TextClass@@AAEXPAPAUSentenceType@1@@Z) 외부 기호(참조 위치: "public: void __thiscall TextClass::Shutdown(void)" (?Shutdown@TextClass@@QAEXXZ) 함수)에서 확인하지 못했습니다.
-textclass.obj : error LNK2019: "private: bool __thiscall TextClass::RenderSentence(struct ID3D11DeviceContext *,struct TextClass::SentenceType *,struct DirectX::XMMATRIX,struct DirectX::XMMATRIX)" (?RenderSentence@TextClass@@AAE_NPAUID3D11DeviceContext@@PAUSentenceType@1@UXMMATRIX@DirectX@@2@Z) 외부 기호(참조 위치: "public: bool __thiscall TextClass::Render(struct ID3D11DeviceContext *,struct DirectX::XMMATRIX,struct DirectX::XMMATRIX)" (?Render@TextClass@@QAE_NPAUID3D11DeviceContext@@UXMMATRIX@DirectX@@1@Z) 함수)에서 확인하지 못했습니다.
-C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\Studying_DX.exe : fatal error LNK1120: 3개의 확인할 수 없는 외부 참조입니다.
+DirectXTex.lib(BC.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(BC.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(BC4BC5.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(BC4BC5.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(BC6HBC7.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(BC6HBC7.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(DirectXTexCompress.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexCompress.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(DirectXTexConvert.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexConvert.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(DirectXTexD3D11.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexD3D11.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(DirectXTexDDS.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexDDS.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(DirectXTexImage.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexImage.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(DirectXTexMipMaps.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexMipMaps.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+DirectXTex.lib(DirectXTexUtil.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexUtil.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+  Studying_DX.vcxproj -> C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\Studying_DX.exe
