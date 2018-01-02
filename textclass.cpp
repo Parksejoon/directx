@@ -229,7 +229,7 @@ bool TextClass::InitializeSentence(SentenceType** sentence, int maxLength, ID3D1
 	indexBufferDesc.StructureByteStride = 0;
 
 	// 인덱스 데이터를 가르킬 서브리소스 구조체 포인터를 줍니다.
-	indexData.pSysMem = vertices;
+	indexData.pSysMem = indices;
 	indexData.SysMemPitch = 0;
 	indexData.SysMemSlicePitch = 0;
 

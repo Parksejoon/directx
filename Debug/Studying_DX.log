@@ -1,22 +1,2 @@
 ﻿  textclass.cpp
-  graphicsclass.cpp
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(37): warning C4316: 'D3DClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(53): warning C4316: 'CameraClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
-c:\users\dsm2017\documents\visual studio 2017\projects\studying_dx\studying_dx\graphicsclass.cpp(68): warning C4316: 'TextClass': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
-  d3dclass.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  systemclass.cpp
-  main.cpp
-  코드를 생성하고 있습니다...
-DirectXTex.lib(BC.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(BC.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(BC4BC5.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(BC4BC5.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(BC6HBC7.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(BC6HBC7.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(DirectXTexCompress.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexCompress.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(DirectXTexConvert.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexConvert.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(DirectXTexD3D11.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexD3D11.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(DirectXTexDDS.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexDDS.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(DirectXTexImage.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexImage.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(DirectXTexMipMaps.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexMipMaps.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTex.lib(DirectXTexUtil.obj) : warning LNK4099: 'DirectXTex.pdb' PDB를 'DirectXTex.lib(DirectXTexUtil.obj)' 또는 'C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\DirectXTex.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
   Studying_DX.vcxproj -> C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\Studying_DX\Debug\Studying_DX.exe

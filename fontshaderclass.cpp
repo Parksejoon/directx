@@ -78,7 +78,7 @@ bool FontShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* v
 	ID3D10Blob* pixelShaderBuffer;
 	D3D11_INPUT_ELEMENT_DESC polygonLayout[2];
 	unsigned int numElements;
-	D3D11_BUFFER_DESC matrixBufferDesc;
+	D3D11_BUFFER_DESC constantBufferDesc;
     D3D11_SAMPLER_DESC samplerDesc;
 	D3D11_BUFFER_DESC pixelBufferDesc;
 
@@ -177,19 +177,20 @@ bool FontShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* v
 	pixelShaderBuffer = 0;
 
 	// Setup the description of the dynamic matrix constant buffer that is in the vertex shader.
-    matrixBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	matrixBufferDesc.ByteWidth = sizeof(ConstantBufferType);
-    matrixBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    matrixBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-    matrixBufferDesc.MiscFlags = 0;
-	matrixBufferDesc.StructureByteStride = 0;
+    constantBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	constantBufferDesc.ByteWidth = sizeof(ConstantBufferType);
+	constantBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	constantBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	constantBufferDesc.MiscFlags = 0;
+	constantBufferDesc.StructureByteStride = 0;
 
 	// Create the constant buffer pointer so we can access the vertex shader constant buffer from within this class.
-	result = device->CreateBuffer(&matrixBufferDesc, NULL, &m_constantBuffer);
+	result = device->CreateBuffer(&constantBufferDesc, NULL, &m_constantBuffer);
 	if(FAILED(result))
 	{
 		return false;
 	}
+
 
 	// Create a texture sampler state description.
     samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -213,7 +214,7 @@ bool FontShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* v
 		return false;
 	}
 
-	// 
+	// 픽셀 버퍼 description을 생성합니다.
 	pixelBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	pixelBufferDesc.ByteWidth = sizeof(PixelBufferType);
 	pixelBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -221,7 +222,7 @@ bool FontShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* v
 	pixelBufferDesc.MiscFlags = 0;
 	pixelBufferDesc.StructureByteStride = 0;
 
-	//
+	// description을 기반으로 버퍼를 생성합니다.
 	result = device->CreateBuffer(&pixelBufferDesc, NULL, &m_pixelBuffer);
 	if (FAILED(result))
 	{
@@ -234,7 +235,7 @@ bool FontShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* v
 
 void FontShaderClass::ShutdownShader()
 {
-	//
+	// 픽셀 버퍼를 풀어줍니다.
 	if (m_pixelBuffer)
 	{
 		m_pixelBuffer->Release();
@@ -326,20 +327,20 @@ bool FontShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, XM
 	PixelBufferType* dataPtr2;
 
 
-	// Transpose the matrices to prepare them for the shader.
-	worldMatrix = XMMatrixTranspose(worldMatrix);
-	viewMatrix = XMMatrixTranspose(viewMatrix);
-	projectionMatrix = XMMatrixTranspose(projectionMatrix);
-
 	// Lock the constant buffer so it can be written to.
 	result = deviceContext->Map(m_constantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	if(FAILED(result))
+	if (FAILED(result))
 	{
 		return false;
 	}
 
 	// Get a pointer to the data in the constant buffer.
 	dataPtr = (ConstantBufferType*)mappedResource.pData;
+
+	// Transpose the matrices to prepare them for the shader.
+	worldMatrix = XMMatrixTranspose(worldMatrix);
+	viewMatrix = XMMatrixTranspose(viewMatrix);
+	projectionMatrix = XMMatrixTranspose(projectionMatrix);
 
 	// Copy the matrices into the constant buffer.
 	dataPtr->world = worldMatrix;

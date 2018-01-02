@@ -67,6 +67,13 @@ bool FontClass::LoadFontData(char* filename)
 		return false;
 	}
 
+	// 텍스트 파일을 엽니다.
+	fin.open(filename);
+	if (fin.fail())
+	{
+		return false;
+	}
+
 	// 95개의 문자들을 읽어옵니다.
 	for (int i = 0; i < 95; i++)
 	{

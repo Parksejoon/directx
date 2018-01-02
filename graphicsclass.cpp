@@ -57,7 +57,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	// Camera의 위치를 설정합니다.
-	m_Camera->SetPosition(0.0f, 55.0f, -230.0f);
+	m_Camera->SetPosition(0.0f, 0.0f, -1.0f);
 
 	// 2d 유저 인터페이스를 렌더링하기 위해 카메라를 통해 베이스 뷰 매트릭스를 초기화합니다.
 	m_Camera->SetPosition(0.0f, 0.0f, -1.0f);
