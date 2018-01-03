@@ -42,7 +42,13 @@ bool SystemClass::Initialize()
 	}
 
 	// Input 객체를 초기화
-	m_Input->Initialize();
+	result = m_Input->Initialize(m_hinstance, m_hwnd, screenWidth, screenHeight);
+	if (!result)
+	{
+		MessageBox(m_hwnd, L"Could not initialize the input object.", L"Error", MB_OK);
+
+		return false;
+	}
 
 	// graphics 객체를 생성합니다. 이 객체는 이 어플리케이션의 모든 그래픽을 처리합니다.
 	m_Graphics = new GraphicsClass;
@@ -74,6 +80,7 @@ void SystemClass::Shutdown()
 	// Input 객체를 반환합니다.
 	if (m_Input)
 	{
+		m_Input->Shutdown();
 		delete m_Input;
 		m_Input = 0;
 	}
@@ -114,8 +121,16 @@ void SystemClass::Run()
 			result = Frame();
 			if (!result)
 			{
+				MessageBox(m_hwnd, L"Frame Processing Failed", L"Error", MB_OK);
+				
 				done = true;
 			}
+		}
+
+		// 종료 키를 눌렀는지 확인하고 종료합니다.
+		if (m_Input->IsEscapePressed() == true)
+		{
+			done = true;
 		}
 	}
 
@@ -125,16 +140,27 @@ void SystemClass::Run()
 bool SystemClass::Frame()
 {
 	bool result;
+	int mouseX, mouseY;
 
 
-	// 유저가 Esc키를눌러 어플리케이션을 종료하기를 원하는지 확인합니다.
-	if (m_Input->IsKeyDown(VK_ESCAPE))
+	// 입력 프레임을 진행합니다.
+	result = m_Input->Frame();
+	if (!result)
 	{
 		return false;
 	}
 
-	// graphics 객체의 작업을 처리합니다.
-	result = m_Graphics->Frame();
+	// 입력 객체로부터 마우스의 좌표를 가져옵니다.
+	m_Input->GetMouseLocation(mouseX, mouseY);
+
+	// 그래픽 객체의 작업을 처리합니다.
+	result = m_Graphics->Frame(mouseX, mouseY);
+	if (!result)
+	{
+		return false;
+	}
+
+	result = m_Graphics->Render();
 	if (!result)
 	{
 		return false;
@@ -145,30 +171,7 @@ bool SystemClass::Frame()
 
 LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
-	switch (umsg)
-	{
-		// 키보드가 키가 눌렸는지 확인합니다.
-	case WM_KEYDOWN:
-	{
-		// 키가 눌렦으면 input 객체에 정보를 전달하여 기록하도록 합니다.
-		m_Input->KeyDown((unsigned int)wparam);
-		return 0;
-	}
-
-	// 키보드의 눌린 키가 떼어졌는지 확인합니다.
-	case WM_KEYUP:
-	{
-		// 키가 떼어졌으면 input 객체에 정보를 전달하여 이 키를 해제하도록 합니다.
-		m_Input->KeyUp((unsigned int)wparam);
-		return 0;
-	}
-
-	// 다른 메세지들은 사용하지 않으므로 기본 메세지 처리기에 전달합니다.
-	default:
-	{
-		return DefWindowProc(hwnd, umsg, wparam, lparam);
-	}
-	}
+	return DefWindowProc(hwnd, umsg, wparam, lparam);
 }
 
 void SystemClass::InitiallzeWindows(int& screenWidth, int& screenHeight)

@@ -227,30 +227,25 @@ void GraphicsClass::Shutdown()
 	return;
 }
 
-bool GraphicsClass::Frame()
+bool GraphicsClass::Frame(int mouseX, int mouseY)
 {
 	bool result;
-	static float rotation = 0.0f;
 
 
 	// 매 프래임마다 각도를 갱신합니다.
-	rotation += (float)XM_PI * 0.05f;
-	if (rotation > 360.0f)
-	{
-		rotation -= 360.0f;
-	}
-
-	// 그래픽 렌더링을 수행합니다.
-	result = Render(rotation);
+	result = m_Text->SetMousePosition(mouseX, mouseY, m_D3D->GetDeviceContext());
 	if (!result)
 	{
 		return false;
 	}
 
+	// 카메라의 위치를 설정합니다.
+	m_Camera->SetPosition(0.0f, 0.0f, -10.0f);
+
 	return true;
 }
 
-bool GraphicsClass::Render(float rotation)
+bool GraphicsClass::Render()
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix, orthoMatrix;
 	bool result;

@@ -38,10 +38,8 @@ public:
 
 	bool Initialize(int, int, HWND);		// 초기화
 	void Shutdown();						// 종료
-	bool Frame();							// 매 프래임마다 실행
-
-private:
-	bool Render(float);						// 렌더링
+	bool Frame(int, int);					// 매 프래임마다 실행
+	bool Render();							// 렌더링
 
 private:
 	D3DClass*		    m_D3D;		    	// D3DX 

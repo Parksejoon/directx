@@ -14,6 +14,7 @@ TextClass::TextClass()
 
 	m_sentence1 = 0;
 	m_sentence2 = 0;
+	m_sentence3 = 0;
 }
 
 TextClass::TextClass(const TextClass& other)
@@ -74,13 +75,6 @@ bool TextClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceCont
 	{
 		return false;
 	}
-
-	// 문자열의 정보와 함께 문장 정점 버퍼를 갱신합니다.
-	result = UpdateSentence(m_sentence1, "Hello", 100, 100, 1.0f, 1.0f, 1.0f, deviceContext);
-	if (!result)
-	{
-		return false;
-	}
 	
 	// 두번째 문장을 초기화합니다.
 	result = InitializeSentence(&m_sentence2, 16, device);
@@ -89,9 +83,9 @@ bool TextClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceCont
 		return false;
 	}
 
-	// 문자열의 정보와 함께 문장 정점 버퍼를 갱신합니다.
-	result = UpdateSentence(m_sentence2, "Goodbye", 100, 200, 1.0f, 1.0f, 0.0f, deviceContext);
-	if(!result)
+	// 세번째 문장을 초기화합니다.
+	result = InitializeSentence(&m_sentence3, 32, device);
+	if (!result)
 	{
 		return false;
 	}
@@ -106,6 +100,9 @@ void TextClass::Shutdown()
 	
 	// 두번째 문장을 할당 해제합니다.
 	ReleaseSentence(&m_sentence2);
+
+	// 세번째 문장을 할당 해제합니다.
+	ReleaseSentence(&m_sentence3);
 
 	// 폰트 셰이더 오브젝트를 할당 해제합니다.
 	if (m_FontShader)
@@ -140,6 +137,13 @@ bool TextClass::Render(ID3D11DeviceContext* deviceContext, XMMATRIX worldMatrix,
 
 	// 두번째 문장을 그립니다.
 	result = RenderSentence(deviceContext, m_sentence2, worldMatrix, orthoMatrix);
+	if (!result)
+	{
+		return false;
+	}
+
+	// 세번째 문장을 그립니다.
+	result = RenderSentence(deviceContext, m_sentence3, worldMatrix, orthoMatrix);
 	if (!result)
 	{
 		return false;
@@ -371,6 +375,55 @@ bool TextClass::RenderSentence(ID3D11DeviceContext* deviceContext, SentenceType*
 	if (!result)
 	{
 		false;
+	}
+
+	return true;
+}
+
+bool TextClass::SetMousePosition(int mouseX, int mouseY, ID3D11DeviceContext* deviceContext)
+{
+	char tempString[16];
+	char mouseString[16];
+	char keyboardString[32];
+	bool result;
+
+
+	// 마우스의 X좌표를 정수에서 문자열 형식으로 변환합니다.
+	_itoa_s(mouseX, tempString, 10);
+
+	// 마우스의 X좌표의 문자열을 설정합니다.
+	strcpy_s(mouseString, "Mouse X: ");
+	strcpy_s(mouseString, tempString);
+
+	// 새로운 문자열의 정보로 문장 정점 버퍼를 갱신합니다.
+	result = UpdateSentence(m_sentence1, mouseString, 20, 20, 1.0f, 1.0f, 1.0f, deviceContext);
+	if (!result)
+	{
+		return false;
+	}
+
+	// 마우스의 Y좌표를 정수에서 문자열 형식으로 변환합니다.
+	_itoa_s(mouseY, tempString, 10);
+
+	// 마우스의 Y좌표의 문자열을 설정합니다.
+	strcpy_s(mouseString, "Mouse Y: ");
+	strcpy_s(mouseString, tempString);
+
+	// 새로운 문자열의 정보로 문장 정점 버퍼를 갱신합니다.
+	result = UpdateSentence(m_sentence2, mouseString, 20, 40, 1.0f, 1.0f, 1.0f, deviceContext);
+	if (!result)
+	{
+		return false;
+	}
+
+	// 키보드의 눌리고있는 문자열을 설정합니다.
+	strcpy_s(keyboardString, "NowPress: ");
+	//strcpy_s(keyboardString, );
+
+	result = UpdateSentence(m_sentence3, keyboardString, 20, 60, 1.0f, 1.0f, 1.0f, deviceContext);
+	if (!result)
+	{
+		return false;
 	}
 
 	return true;
